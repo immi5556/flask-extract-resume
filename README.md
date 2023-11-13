@@ -7,3 +7,7 @@ start on windows:
 
 > flask --app main run
 	- mian -> main.py file name
+
+
+Resume extracter:
+https://github.com/immi5556/pyresparser/blob/master/OmkarResume.pdf
