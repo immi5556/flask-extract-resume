@@ -11,3 +11,5 @@ start on windows:
 
 Resume extracter:
 https://github.com/immi5556/pyresparser/blob/master/OmkarResume.pdf
+
+pip install -r requirements.txt && python -m nltk.downloader words && python -m nltk.downloader stopwords
