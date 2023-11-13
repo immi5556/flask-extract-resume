@@ -2,7 +2,7 @@ Flask>=2.2.2
 requests==2.22.0
 gunicorn==21.2.0
 waitress==2.1.2
-werkzeug==3.0.1
+werkzeug==2.2.3
 pyresparser
 nltk
 spacy==2.3.5
