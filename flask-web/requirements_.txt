@@ -1,8 +1,0 @@
-Flask>=2.2.2
-requests==2.22.0
-gunicorn==21.2.0
-waitress==2.1.2
-werkzeug==3.0.1
-pyresparser
-nltk
-spacy==2.3.5
