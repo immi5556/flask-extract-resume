@@ -15,30 +15,36 @@ def hello_world():
 @app.route('/uploader', methods = ['GET', 'POST'])
 def upload_file11():
    if request.method == 'POST':
-      f = request.files['file']
+      #f = request.files['file']
+      files = request.files.getlist("file")
       mydir = os.path.join(
         os.getcwd(), 'resume', 
         datetime.now().strftime('%Y-%m-%d_%H-%M-%S'))
-      #fnm = os.path.join(mydir, f.filename)
-      #path_items = fnm.split(os.sep)
-      #fnm_path = '/'.join(path_items)
-      #os.makedirs(mydir, exist_ok=True)
-      os.makedirs(mydir, mode=0o777, exist_ok=True)
-      fpp = os.path.join(mydir, secure_filename(f.filename))
-      f.save(fpp)
-      data = ResumeParser(fpp).get_extracted_data()
-      return data
+      resp = []
+      for f in files: 
+        os.makedirs(mydir, mode=0o777, exist_ok=True)
+        fpp = os.path.join(mydir, secure_filename(f.filename))
+        f.save(fpp)
+        resp.append(ResumeParser(fpp).get_extracted_data())
+      return resp
    else:
       return render_template('upload.html')
 
-def filecreation(list, filename):
-   mydir = os.path.join(
-      os.getcwd(), 
-      datetime.now().strftime('%Y-%m-%d_%H-%M-%S'))
-   try:
-      os.makedirs(mydir)
-   except OSError as e:
-      if e.errno != errno.EEXIST:
-        raise  # This was not a "directory exist" error..
-   with open(os.path.join(mydir, filename), 'w') as d:
-      d.writelines(list)
+@app.route('/storage', defaults={'req_path': 'resume'})
+@app.route('/storage<path:req_path>')
+def dir_listing(req_path):
+    BASE_DIR = os.getcwd()
+    abs_path = os.path.join(BASE_DIR, req_path)
+    if not os.path.exists(abs_path):
+        return abort(404)
+    if os.path.isfile(abs_path):
+        return send_file(abs_path)
+
+    #files = os.listdir(abs_path)
+    files = []
+    with os.scandir(abs_path) as it:
+        for entry in it:
+            if entry.is_file():
+                print('reached..');
+                files.append({ filepath : entry.path, filesize : entry.stat().st_size })
+    return render_template('files.html', len = len(files), files=files)
