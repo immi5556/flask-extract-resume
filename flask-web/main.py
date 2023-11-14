@@ -23,7 +23,7 @@ def upload_file11():
       #path_items = fnm.split(os.sep)
       #fnm_path = '/'.join(path_items)
       #os.makedirs(mydir, exist_ok=True)
-      os.makedirs(mydir, mode=777, exist_ok=True)
+      os.makedirs(mydir, mode=0o777, exist_ok=True)
       fpp = os.path.join(mydir, secure_filename(f.filename))
       f.save(fpp)
       data = ResumeParser(fpp).get_extracted_data()
