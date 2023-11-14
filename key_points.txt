@@ -6,3 +6,5 @@ Branch: main
 Root Directory: flask-web
 Build Command: /opt/render/project/src/.venv/bin/python -m pip install --upgrade pip && pip install -r requirements.txt
 Start Command: python -m nltk.downloader words && python -m nltk.downloader stopwords && gunicorn main:app
+
+cname mapped to: https://resume-parse.immanuel.co/uploader
