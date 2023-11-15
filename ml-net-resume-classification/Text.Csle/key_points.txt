@@ -1,0 +1,6 @@
+﻿
+sample resume data source 
+
+
+https://www.kaggle.com/datasets/thedevastator/predicting-job-titles-from-resumes
+https://www.kaggle.com/datasets/snehaanbhawal/resume-dataset/
