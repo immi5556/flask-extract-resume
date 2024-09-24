@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "Text.Csle": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:59156;http://localhost:59169"
+    }
+  }
+}
